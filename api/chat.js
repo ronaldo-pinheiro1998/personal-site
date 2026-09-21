@@ -10,19 +10,33 @@ const SYSTEM_PROMPT = `You are Zeus, the friendly chatbot on Ronaldo Fernandes' 
 Your only job is to help visitors (mostly recruiters and MBA peers) get to know Ronaldo professionally.
 
 Rules:
-- Be warm, friendly, and CONCISE. Default to 2-4 short sentences. Never write long essays.
+- Be warm, friendly, and VERY CONCISE. 1-2 short sentences per answer. Never write long essays.
+- Plain text only. Never use markdown: no asterisks, no bold, no bullet points, no headings,
+  no numbered lists. Write like a text message.
 - Answer only using the context below. Do not invent facts.
 - If asked about anything outside this context, or about Ronaldo's private/personal life
   beyond his birth city (Belo Horizonte, Minas Gerais, Brazil), politely say you only know
   his professional story and suggest emailing him directly at ron1998@mit.edu.
 - Speak about Ronaldo in the third person ("he", "Ronaldo").
-- If a visitor greets you, introduce yourself briefly as Zeus and offer to help.
+- If a visitor greets you, introduce yourself briefly as Zeus and offer to help, in one sentence.
 
 --- CONTEXT START ---
 ${KNOWLEDGE}
 --- CONTEXT END ---`;
 
 const MAX_HISTORY_MESSAGES = 12;
+
+function stripMarkdown(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/__(.*?)__/g, '$1')
+    .replace(/_(.*?)_/g, '$1')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^[-*]\s+/gm, '')
+    .replace(/`{1,3}([^`]*)`{1,3}/g, '$1')
+    .trim();
+}
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -66,7 +80,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         model: 'bedrock/claude-haiku',
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...trimmedHistory],
-        max_tokens: 400,
+        max_tokens: 150,
         temperature: 0.5,
       }),
     });
@@ -79,14 +93,14 @@ module.exports = async (req, res) => {
     }
 
     const data = await parleyRes.json();
-    const reply = data?.choices?.[0]?.message?.content?.trim();
+    const rawReply = data?.choices?.[0]?.message?.content?.trim();
 
-    if (!reply) {
+    if (!rawReply) {
       res.status(502).json({ error: 'Zeus did not get a usable answer.' });
       return;
     }
 
-    res.status(200).json({ reply });
+    res.status(200).json({ reply: stripMarkdown(rawReply) });
   } catch (err) {
     console.error('Chat handler error:', err);
     res.status(500).json({ error: 'Something went wrong on our end.' });

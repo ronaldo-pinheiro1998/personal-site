@@ -172,14 +172,41 @@
   }
 
   /* ---------- Masthead ---------- */
-  .masthead { border-bottom: 1px solid var(--rule); }
+  html { scroll-behavior: smooth; }
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    border-bottom: 1px solid var(--rule);
+    background: var(--ground);
+  }
   .masthead .wrap {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem 2rem;
-    padding-block: 1.5rem;
+    padding-block: 1.1rem;
+  }
+  .masthead-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .masthead-nav a {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .75rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .masthead-nav a:hover { color: var(--accent); }
+  @media (max-width: 700px) {
+    .masthead-nav { display: none; }
   }
 
   /* ---------- Photos ---------- */
@@ -298,6 +325,7 @@
 
   /* ---------- Sections ---------- */
   section { padding-block: clamp(2.25rem, 6vw, 3.75rem); }
+  #about, #experience, #building, #recruiters { scroll-margin-top: 4.5rem; }
   .section-head {
     display: flex;
     align-items: baseline;
@@ -429,6 +457,26 @@
     letter-spacing: .04em;
     text-underline-offset: 4px;
   }
+  .link-alt--dark { color: var(--accent); }
+
+  .skills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+  }
+  .skills li {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .78rem;
+    letter-spacing: .01em;
+    color: var(--ink-soft);
+    background: var(--rule-soft);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: .45rem .95rem;
+  }
 
   /* ---------- Footer ---------- */
   footer { padding-block: 2.25rem 3rem; }
@@ -450,6 +498,14 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
   /* ---------- Zeus chat widget ---------- */
   #zeus-launcher {
@@ -672,6 +728,12 @@
       <img class="on-light" src="images/logos/mit-sloan.png" alt="MIT Management Sloan School" width="468" height="276">
       <img class="on-dark" src="images/logos/mit-sloan-dark.png" alt="" aria-hidden="true" width="468" height="276">
     </a>
+    <ul class="masthead-nav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#building">Building</a></li>
+      <li><a href="#recruiters">Recruiters</a></li>
+    </ul>
     <p class="label" style="margin:0;">MBA Candidate, Class of 2028</p>
   </div>
 </header>
@@ -709,10 +771,6 @@
       <dd>Accounting, Ibmec BH 2022. Top of the class every year, full ProUni scholarship.</dd>
     </div>
     <div class="signal">
-      <dt>5 out of 5</dt>
-      <dd>McKinsey analyst rating across 15+ engagements. MBA sponsored by the firm.</dd>
-    </div>
-    <div class="signal">
       <dt>R$ 70M</dt>
       <dd>Board-approved investment at Globo, run through the transformation office I built.</dd>
     </div>
@@ -722,7 +780,7 @@
     </div>
   </dl>
 
-  <section id="about">
+  <section id="about" class="reveal">
     <div class="section-head">
       <h2>Who I am</h2>
       <span class="rule"></span>
@@ -758,7 +816,7 @@
     </div>
   </section>
 
-  <section id="experience">
+  <section id="experience" class="reveal">
     <div class="section-head">
       <h2>Experience</h2>
       <span class="rule"></span>
@@ -786,18 +844,11 @@
             <span class="entry__org">Globo &middot; Rio de Janeiro &middot; McKinsey third-year-out placement</span>
           </h3>
           <p class="entry__body">
-            Built Globo's AI strategy end to end. The diagnosis was that the company already spent
-            on AI, but the money produced bottom-up adoption with no top-down intent tied to the
-            P&amp;L, and the initiatives defended the business instead of rethinking it. The board
-            approved two units off the back of it: an AI-first venture building cell, and a process
-            redesign cell running agents alongside the highest-potential functions.
-          </p>
-          <p class="entry__body">
-            Also designed a four-step methodology to evaluate any content distribution case, ran the
-            transformation office for a R$ 70M board-approved investment program, and led the
-            feasibility study for a business channel built on the Valor Econômico brand. This was
-            my first formal team, and leading through people rather than delivering myself was the
-            real lesson of the year.
+            Built Globo's AI strategy end to end, leading the board to approve an AI-first
+            venture-building cell and a process-redesign cell running agents in the
+            highest-potential functions. Also ran the transformation office for a R$ 70M
+            board-approved investment program and led a feasibility study for a new business
+            channel. My first formal team, and my first real lesson in leading through people.
           </p>
         </div>
       </article>
@@ -814,19 +865,11 @@
             <li><span>Business Analyst Intern</span><span class="roles__when">Feb 2022 &ndash; Jan 2023</span></li>
           </ol>
           <p class="entry__body">
-            More than 15 engagements across financial players, agriculture and media, rated 5 out of
-            5 and sponsored by the firm for this MBA. On an agribusiness banking assessment, a
-            partner suggested I use a British vendor's market model. My read was that it was the
-            wrong tool for Brazil, so I built my own around crop cycle, regional volatility and
-            regulatory nuance. The answer was that the partnership would not be competitive, and
-            delivering it took more courage than analysis. Real leadership is saying what needs to be
-            said, not what is comfortable.
-          </p>
-          <p class="entry__body">
-            Led McKinsey's largest Black community employment conference in Rio in 2023, with 10
-            corporate sponsors, firm leadership and university partners. It produced 80 hires and
-            more than 150 scholarships for under-represented talent, and it is now an annual
-            initiative.
+            15+ engagements across financial services, agriculture and media, sponsored by the firm
+            for this MBA. On an agribusiness banking assessment, I built my own market model instead
+            of using a British vendor's, concluding a proposed partnership would not be competitive.
+            Also led McKinsey's largest Black community employment conference in Rio (2023): 80 hires
+            and 150+ scholarships, now an annual initiative.
           </p>
           <figure class="shot entry__shot" style="margin:0;">
             <img src="images/mckinsey-conference.jpg" alt="Ronaldo leading the McKinsey Black community employment conference in Rio de Janeiro, 2023" loading="lazy">
@@ -868,24 +911,10 @@
         </div>
       </article>
 
-      <article class="entry">
-        <div class="entry__rail"><p class="entry__when">From age 14</p></div>
-        <div>
-          <h3 class="entry__role">First jobs
-            <span class="entry__org">Local internet provider &middot; Community tutoring program</span>
-          </h3>
-          <p class="entry__body">
-            Connected families and small businesses in my neighborhood to the internet at prices they
-            could afford. At 15, ran a free math program for students in the community. Every one of
-            them passed their exams and one earned a full university scholarship.
-          </p>
-        </div>
-      </article>
-
     </div>
   </section>
 
-  <section id="building">
+  <section id="building" class="reveal">
     <div class="section-head">
       <h2>What I build</h2>
       <span class="rule"></span>
@@ -899,12 +928,9 @@
             <span class="entry__org">WhatsApp bot for Brazilian micro-entrepreneur tax compliance</span>
           </h3>
           <p class="entry__body">
-            In production since June 2026 on Python, FastAPI, Railway and Supabase. Clarê logs into
-            the government portal, generates the monthly tax slip and delivers the PDF straight into
-            WhatsApp, so the entrepreneur never opens a website. 37 users on the base, 70% onboarding
-            completion, and three commercial tiers defined. I am deliberately running structured
-            tests on the core hypotheses before spending anything on growth, because I still cannot
-            prove it solves a real pain, scales, or gets paid for.
+            In production since June 2026. Clarê logs into the government portal, generates the
+            monthly tax slip and delivers the PDF straight into WhatsApp. 37 users, 70% onboarding
+            completion. I'm deliberately testing the core hypotheses before spending on growth.
           </p>
         </div>
       </article>
@@ -916,11 +942,9 @@
             <span class="entry__org">Social project &middot; career access for favela talent</span>
           </h3>
           <p class="entry__body">
-            The thesis is my own history. Talent exists everywhere, what is missing is access,
-            guidance and network. I am building a social ecosystem that gives low-income Black young
-            people in Brazilian favelas professional growth opportunities through mentoring, training,
-            and publicizing scholarships and job openings. It runs two Saturdays a month, and the goal
-            of this cycle is consistency rather than scale.
+            The thesis is my own history: talent exists everywhere, what's missing is access,
+            guidance and network. Gives low-income Black youth in Brazilian favelas mentoring,
+            training, and access to scholarships and job openings. Runs two Saturdays a month.
           </p>
           <figure class="shot entry__shot" style="margin:0;">
             <img src="images/acelera-favela.jpg" alt="An Acelera Favela session with members of the community" loading="lazy">
@@ -931,28 +955,48 @@
     </div>
   </section>
 
-</div>
-
-<section class="next" id="recruiters">
-  <div class="wrap">
-    <p class="label">For recruiters</p>
-    <h2>One next action</h2>
+  <section id="recruiters" class="reveal">
+    <div class="section-head">
+      <h2>For recruiters</h2>
+      <span class="rule"></span>
+    </div>
     <div class="prose">
-      <p>
-        <strong>Give me 20 minutes about a problem you are actually trying to solve.</strong>
-        Not a company overview, not a coffee chat about culture. Send me the problem in advance and
-        I will show up with a point of view on it.
+      <p class="lead">
+        Recruiting for a <strong>Summer 2027 internship</strong> in product strategy, AI
+        applications or business development.
       </p>
       <p>
-        I am recruiting for a <strong>Summer 2027 internship</strong> in product strategy, AI
-        applications or business development. My primary direction is agriculture technology with AI
-        at the core. My second is AI infrastructure and applied AI platforms. I am authorized to work
-        in the US on F-1 CPT for the internship.
+        Primary direction: <strong>AgTech with AI at the core</strong>. Second: AI infrastructure
+        and applied AI platforms. Authorized to work in the US on F-1 CPT for the internship.
+      </p>
+    </div>
+    <ul class="skills">
+      <li>Strategic Planning &amp; Structured Problem-Solving</li>
+      <li>Financial &amp; Business-Case Modeling</li>
+      <li>Applied AI Product Strategy</li>
+      <li>Agile &amp; Product Management</li>
+      <li>Executive &amp; Board Communication</li>
+      <li>Cross-Functional &amp; PMO Leadership</li>
+    </ul>
+    <div class="actions">
+      <a class="link-alt link-alt--dark" href="https://www.linkedin.com/in/ronaldo-fernandes-55650617b/" rel="noopener">LinkedIn &rarr;</a>
+    </div>
+  </section>
+
+</div>
+
+<section class="next reveal" id="challenge">
+  <div class="wrap">
+    <p class="label">Put me to the test</p>
+    <h2>Test my abilities</h2>
+    <div class="prose">
+      <p>
+        Do you want to test my abilities? <strong>Email me a problem related to my skills</strong>
+        and I will hand it back to you in one week.
       </p>
     </div>
     <div class="actions">
-      <a class="btn" href="mailto:ron1998@mit.edu?subject=Summer%202027%20internship%3A%2020%20minutes%3F">Email me a problem</a>
-      <a class="link-alt" href="https://www.linkedin.com/in/ronaldo-fernandes-55650617b/" rel="noopener">LinkedIn &rarr;</a>
+      <a class="btn" href="mailto:ron1998@mit.edu?subject=A%20problem%20for%20you%2C%20Ronaldo">Email me a problem</a>
     </div>
   </div>
 </section>
@@ -979,6 +1023,27 @@
       if (img.complete && img.naturalWidth === 0) markEmpty(img);
     })(shots[i]);
   }
+})();
+
+(function () {
+  var reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    for (var i = 0; i < reveals.length; i++) reveals[i].classList.add('is-visible');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  for (var j = 0; j < reveals.length; j++) observer.observe(reveals[j]);
 })();
 
 (function () {

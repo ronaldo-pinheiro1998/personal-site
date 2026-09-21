@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ronaldo Fernandes</title>
+<meta name="description" content="Ronaldo Fernandes, MIT Sloan MBA '28. Ex-McKinsey and Globo strategy. Recruiting for a Summer 2027 internship in AgTech and applied AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  /* ---- MIT palette: Cardinal Red, Bright Red, Silver Gray ---- */
+  :root {
+    --ground:    #faf9f8;
+    --paper:     #ffffff;
+    --ink:       #141414;
+    --ink-soft:  #55504e;
+    --ink-faint: #7d7774;
+    --rule:      #c2c0bf;
+    --rule-soft: #e2e0de;
+    --accent:    #a31f34;
+    --cta-bg:    #750014;
+    --cta-ink:   #ffffff;
+    --cta-soft:  #e8c4c9;
+    --bright:    #ff1423;
+
+    --measure: 64ch;
+    --step-0: 1rem;
+    --step-1: 1.125rem;
+    --step-2: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
+    --step-3: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+    --step-4: clamp(2.6rem, 1.6rem + 4.6vw, 5rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:    #121110;
+      --paper:     #1b1a18;
+      --ink:       #f3f1ef;
+      --ink-soft:  #b0aba7;
+      --ink-faint: #8b8581;
+      --rule:      #3c3936;
+      --rule-soft: #2a2825;
+      --accent:    #ff5462;
+      --cta-bg:    #8e0018;
+      --cta-ink:   #ffffff;
+      --cta-soft:  #eec3c8;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:    #121110;
+    --paper:     #1b1a18;
+    --ink:       #f3f1ef;
+    --ink-soft:  #b0aba7;
+    --ink-faint: #8b8581;
+    --rule:      #3c3936;
+    --rule-soft: #2a2825;
+    --accent:    #ff5462;
+    --cta-bg:    #8e0018;
+    --cta-ink:   #ffffff;
+    --cta-soft:  #eec3c8;
+  }
+
+  * { box-sizing: border-box; }
+
+  /* ---------- Ambient drift ---------- */
+  #drift {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .masthead,
+  body > .wrap,
+  .next,
+  footer { position: relative; z-index: 1; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: var(--step-1);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding-inline: max(20px, 4vw);
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible,
+  button:focus-visible { outline: 2px solid var(--bright); outline-offset: 3px; }
+
+  .label {
+    font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  h1, h2, h3 {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  /* ---------- MIT Sloan lockup ---------- */
+  .lockup {
+    display: inline-block;
+    padding-right: 1.1rem;
+    border-right: 1px solid var(--rule);
+    line-height: 0;
+  }
+  .lockup img {
+    display: block;
+    width: 9.75rem;
+    max-width: 100%;
+    height: auto;
+  }
+  .lockup .on-dark { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .lockup .on-light { display: none; }
+    :root:not([data-theme="light"]) .lockup .on-dark { display: block; }
+  }
+  :root[data-theme="dark"] .lockup .on-light { display: none; }
+  :root[data-theme="dark"] .lockup .on-dark { display: block; }
+
+  /* ---------- Employer marks ---------- */
+  .entry__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .65rem;
+    padding-top: .3rem;
+  }
+  .entry__logo {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    padding: 3px;
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .entry__logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  /* no logo file: fall back to the initials carried on the element */
+  .entry__logo.is-empty img { display: none; }
+  .entry__logo.is-empty::after {
+    content: attr(data-mark);
+    font-family: Archivo, Arial, sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    color: var(--accent);
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead { border-bottom: 1px solid var(--rule); }
+  .masthead .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-block: 1.5rem;
+  }
+
+  /* ---------- Photos ---------- */
+  .shot {
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  .shot figcaption {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .68rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: .55rem;
+  }
+  /* a missing landscape photo simply does not render */
+  .shot.is-empty { display: none; }
+
+  /* the portrait slot always renders: it falls back to a monogram */
+  .portrait { margin: 0; }
+  .portrait__frame { aspect-ratio: 4 / 5; }
+  .portrait__mark {
+    display: none;
+    position: absolute;
+    inset: 0;
+    place-items: center;
+    background: var(--paper);
+    font-family: Archivo, Arial, sans-serif;
+    font-size: clamp(3rem, 8vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: .02em;
+    color: var(--accent);
+  }
+  .portrait__frame.is-empty { display: block; }
+  .portrait__frame.is-empty img { display: none; }
+  .portrait__frame.is-empty .portrait__mark { display: grid; }
+  /* no photo, no caption about the photo */
+  .portrait__frame.is-empty ~ .portrait__cap { display: none; }
+
+  .portrait__cap {
+    margin-top: .85rem;
+    font-size: .95rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .portrait__cap .label {
+    display: block;
+    color: var(--accent);
+    margin-bottom: .3rem;
+  }
+
+  .entry__shot {
+    aspect-ratio: 3 / 2;
+    margin-top: 1.1rem;
+    max-width: 30rem;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-block: clamp(2.75rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem); }
+  .hero__grid { display: grid; gap: 2.25rem; }
+  @media (min-width: 880px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr) 16.5rem;
+      gap: 3.5rem;
+      align-items: end;
+    }
+  }
+  .hero h1 {
+    font-size: var(--step-4);
+    font-weight: 700;
+    letter-spacing: -.028em;
+    line-height: .95;
+    margin-block: .6rem 1.25rem;
+  }
+  .hero .standfirst {
+    max-width: var(--measure);
+    font-size: var(--step-2);
+    line-height: 1.42;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .hero .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Signal strip ---------- */
+  .signals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.75rem 2.5rem;
+    padding-block: 2rem;
+    border-block: 1px solid var(--rule);
+    margin-block: clamp(2rem, 5vw, 3rem);
+  }
+  .signal dt {
+    font-family: Archivo, Arial, sans-serif;
+    font-size: clamp(1.5rem, 1.2rem + .9vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .signal dd {
+    margin: .3rem 0 0;
+    font-size: .95rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding-block: clamp(2.25rem, 6vw, 3.75rem); }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .section-head h2 {
+    font-size: var(--step-3);
+    font-weight: 700;
+    letter-spacing: -.02em;
+  }
+  .section-head .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    transform: translateY(-.35em);
+  }
+
+  .prose { max-width: var(--measure); }
+  .prose p { margin-block: 0 1.25rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose .lead { font-size: var(--step-2); line-height: 1.45; }
+
+  /* ---------- Experience timeline ---------- */
+  .entries { display: grid; gap: 0; }
+  .entry {
+    display: grid;
+    grid-template-columns: 10.5rem 1fr;
+    gap: .35rem 2.5rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .entry:first-child { border-top: none; padding-top: 0; }
+  .entry__when {
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    padding-top: .45rem;
+  }
+  .entry__role {
+    font-family: Archivo, Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -.012em;
+    line-height: 1.25;
+  }
+  .entry__org {
+    display: block;
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: .2rem;
+  }
+  .entry__body {
+    max-width: var(--measure);
+    margin: .7rem 0 0;
+    font-size: 1.02rem;
+    line-height: 1.58;
+    color: var(--ink-soft);
+  }
+  .entry__body + .entry__body { margin-top: .75rem; }
+  .entry.is-current .entry__when { color: var(--accent); }
+
+  /* progression within one employer */
+  .roles {
+    list-style: none;
+    margin: .85rem 0 0;
+    padding: 0 0 0 .95rem;
+    border-left: 2px solid var(--rule-soft);
+    max-width: 34rem;
+  }
+  .roles li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 1rem;
+    padding-block: .22rem;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .77rem;
+    letter-spacing: .01em;
+    color: var(--ink-soft);
+  }
+  .roles li:first-child { color: var(--ink); }
+  .roles__when { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Next action ---------- */
+  .next {
+    background: var(--cta-bg);
+    color: var(--cta-ink);
+    margin-block: clamp(2rem, 6vw, 3.5rem) 0;
+  }
+  .next .wrap { padding-block: clamp(2.75rem, 7vw, 4.5rem); }
+  .next .label { color: var(--cta-soft); }
+  .next h2 {
+    font-size: var(--step-3);
+    font-weight: 700;
+    letter-spacing: -.022em;
+    margin-block: .55rem 1.5rem;
+  }
+  .next .prose p { color: var(--cta-soft); }
+  .next .prose p strong { color: var(--cta-ink); font-weight: 600; }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--cta-ink);
+    color: var(--cta-bg);
+    font-family: Archivo, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -.005em;
+    text-decoration: none;
+    padding: .85rem 1.5rem;
+  }
+  .btn:hover { background: var(--cta-soft); }
+  .btn:focus-visible { outline: 2px solid var(--cta-ink); outline-offset: 3px; }
+  .link-alt {
+    color: var(--cta-ink);
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .82rem;
+    letter-spacing: .04em;
+    text-underline-offset: 4px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer { padding-block: 2.25rem 3rem; }
+  footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .75rem 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .entry { grid-template-columns: 1fr; gap: .7rem; padding-block: 1.5rem; }
+    .entry__rail { flex-direction: row; align-items: center; gap: .8rem; padding-top: 0; }
+    .entry__when { padding-top: 0; }
+    .section-head { flex-wrap: wrap; }
+    .section-head .rule { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="drift" aria-hidden="true"></canvas>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="lockup" href="https://mitsloan.mit.edu/" rel="noopener">
+      <img class="on-light" src="images/logos/mit-sloan.png" alt="MIT Management Sloan School" width="468" height="276">
+      <img class="on-dark" src="images/logos/mit-sloan-dark.png" alt="" aria-hidden="true" width="468" height="276">
+    </a>
+    <p class="label" style="margin:0;">MBA Candidate, Class of 2028</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero__grid">
+      <div>
+        <p class="label">Cambridge, MA &nbsp;/&nbsp; Belo Horizonte, Brazil</p>
+        <h1>Ronaldo<br>Fernandes</h1>
+        <p class="standfirst">
+          Strategy and applied AI, built from the ground up. Three and a half years at
+          <strong>McKinsey</strong>, a year running corporate strategy at <strong>Globo</strong>,
+          and a tax-compliance product of my own in production. Recruiting for a
+          <strong>Summer 2027 internship</strong> where AI solves a real problem for real people.
+        </p>
+      </div>
+      <figure class="portrait">
+        <div class="shot portrait__frame">
+          <img src="images/portrait.jpg" alt="A 7-Eleven coffee held on a sunlit sidewalk" width="900" height="1125">
+          <span class="portrait__mark" aria-hidden="true">RF</span>
+        </div>
+        <figcaption class="portrait__cap">
+          <span class="label">Daily habit</span>
+          I like cheap coffee. Same cup most days. It is the ritual that starts the work.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <dl class="signals">
+    <div class="signal">
+      <dt>Summa Cum Laude</dt>
+      <dd>Accounting, Ibmec BH 2022. Top of the class every year, full ProUni scholarship.</dd>
+    </div>
+    <div class="signal">
+      <dt>5 out of 5</dt>
+      <dd>McKinsey analyst rating across 15+ engagements. MBA sponsored by the firm.</dd>
+    </div>
+    <div class="signal">
+      <dt>R$ 70M</dt>
+      <dd>Board-approved investment at Globo, run through the transformation office I built.</dd>
+    </div>
+    <div class="signal">
+      <dt>80 hires</dt>
+      <dd>Plus 150+ scholarships from the McKinsey Black community conference I led in Rio, 2023.</dd>
+    </div>
+  </dl>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>Who I am</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="prose">
+      <p class="lead">
+        I was born in Morro do Papagaio, a favela in Belo Horizonte, and I have been working
+        since I was 14.
+      </p>
+      <p>
+        My first job was at a small internet provider, connecting families and businesses in my
+        neighborhood at prices they could actually afford. At 15 I ran a free math tutoring
+        program for students in the community. All of them passed, and one earned a full
+        university scholarship.
+      </p>
+      <p>
+        That is where I learned the thing I still carry. Proximity to a problem is a form of
+        expertise. Understanding a real constraint does not come from a slide, it comes from the
+        person who lives with it.
+      </p>
+      <p>
+        At 14 I also decided to change my own trajectory, studied on my own, and won a full
+        scholarship to a private high school. That opened the door to Ibmec BH, where I graduated
+        first in my class, and then to McKinsey. Along the way I found out I am a builder more
+        than an advisor. I want to use AI to solve real problems for real people, not to build AI
+        for its own sake.
+      </p>
+      <p>
+        MIT Sloan exists to answer one question for me: which industry and practice do I go deep
+        in, so that I build genuine positioning and a network I can eventually pivot into.
+        AgTech with AI at the core is my leading bet. Applied AI platforms is the second.
+      </p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="entries">
+
+      <article class="entry is-current">
+        <div class="entry__rail"><span class="entry__logo" data-mark="MIT"><img src="images/logos/mit-sloan.png" alt="MIT Sloan logo" loading="lazy"></span><p class="entry__when">Sep 2026 &ndash; Sep 2028</p></div>
+        <div>
+          <h3 class="entry__role">MBA Candidate
+            <span class="entry__org">MIT Sloan School of Management &middot; Cambridge, MA</span>
+          </h3>
+          <p class="entry__body">
+            Core semester in Data, Models &amp; Decisions, Financial Accounting, Economic Analysis,
+            Communication for Leaders and Organizational Processes. Building depth in three areas:
+            AI product strategy, agribusiness domain knowledge, and venture building.
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry__rail"><span class="entry__logo" data-mark="G"><img src="images/logos/globo.png" alt="Globo logo" loading="lazy"></span><p class="entry__when">Jul 2025 &ndash; Jul 2026</p></div>
+        <div>
+          <h3 class="entry__role">Manager of Corporate Strategy
+            <span class="entry__org">Globo &middot; Rio de Janeiro &middot; McKinsey third-year-out placement</span>
+          </h3>
+          <p class="entry__body">
+            Built Globo's AI strategy end to end. The diagnosis was that the company already spent
+            on AI, but the money produced bottom-up adoption with no top-down intent tied to the
+            P&amp;L, and the initiatives defended the business instead of rethinking it. The board
+            approved two units off the back of it: an AI-first venture building cell, and a process
+            redesign cell running agents alongside the highest-potential functions.
+          </p>
+          <p class="entry__body">
+            Also designed a four-step methodology to evaluate any content distribution case, ran the
+            transformation office for a R$ 70M board-approved investment program, and led the
+            feasibility study for a business channel built on the Valor Econômico brand. This was
+            my first formal team, and leading through people rather than delivering myself was the
+            real lesson of the year.
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry__rail"><span class="entry__logo" data-mark="McK"><img src="images/logos/mckinsey.png" alt="McKinsey &amp; Company logo" loading="lazy"></span><p class="entry__when">Feb 2022 &ndash; Jul 2025</p></div>
+        <div>
+          <h3 class="entry__role">Senior Business Analyst
+            <span class="entry__org">McKinsey &amp; Company &middot; Rio de Janeiro &middot; 3 yrs 6 mos</span>
+          </h3>
+          <ol class="roles">
+            <li><span>Senior Business Analyst</span><span class="roles__when">Jan 2024 &ndash; Jul 2025</span></li>
+            <li><span>Business Analyst</span><span class="roles__when">Jan 2023 &ndash; Jan 2024</span></li>
+            <li><span>Business Analyst Intern</span><span class="roles__when">Feb 2022 &ndash; Jan 2023</span></li>
+          </ol>
+          <p class="entry__body">
+            More than 15 engagements across financial players, agriculture and media, rated 5 out of
+            5 and sponsored by the firm for this MBA. On an agribusiness banking assessment, a
+            partner suggested I use a British vendor's market model. My read was that it was the
+            wrong tool for Brazil, so I built my own around crop cycle, regional volatility and
+            regulatory nuance. The answer was that the partnership would not be competitive, and
+            delivering it took more courage than analysis. Real leadership is saying what needs to be
+            said, not what is comfortable.
+          </p>
+          <p class="entry__body">
+            Led McKinsey's largest Black community employment conference in Rio in 2023, with 10
+            corporate sponsors, firm leadership and university partners. It produced 80 hires and
+            more than 150 scholarships for under-represented talent, and it is now an annual
+            initiative.
+          </p>
+          <figure class="shot entry__shot" style="margin:0;">
+            <img src="images/mckinsey-conference.jpg" alt="Ronaldo leading the McKinsey Black community employment conference in Rio de Janeiro, 2023" loading="lazy">
+          </figure>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry__rail"><span class="entry__logo" data-mark="TS"><img src="images/logos/topsoccer.png" alt="TopSoccer logo" loading="lazy"></span><p class="entry__when">Sep 2019 &ndash; Feb 2021</p></div>
+        <div>
+          <h3 class="entry__role">Financial Consultant
+            <span class="entry__org">TopSoccer Family Office &middot; Belo Horizonte &middot; 1 yr 6 mos</span>
+          </h3>
+          <ol class="roles">
+            <li><span>Financial Consultant</span><span class="roles__when">Feb 2020 &ndash; Feb 2021</span></li>
+            <li><span>Financial Accounting Intern</span><span class="roles__when">Sep 2019 &ndash; Feb 2020</span></li>
+          </ol>
+          <p class="entry__body">
+            Worked alongside senior accountants managing the financial, investment, accounting and
+            legal affairs of professional soccer athletes, covering invoicing, tax calculation and
+            advisory filings, M&amp;A, and asset and financial planning. Started by analyzing athlete
+            cash flows to find the breakeven point between investment portfolios and their spending.
+            This is where the Brazilian tax code stopped being theory for me, and it is the reason
+            Clarê exists today.
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry__rail"><span class="entry__logo is-empty" data-mark="IB" aria-hidden="true"></span><p class="entry__when">2019 &ndash; 2022</p></div>
+        <div>
+          <h3 class="entry__role">BSc Accounting, Summa Cum Laude
+            <span class="entry__org">Ibmec Belo Horizonte</span>
+          </h3>
+          <p class="entry__body">
+            Full government ProUni scholarship. Voted best student of the program every year and
+            best of the graduating class.
+          </p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry__rail"><p class="entry__when">From age 14</p></div>
+        <div>
+          <h3 class="entry__role">First jobs
+            <span class="entry__org">Local internet provider &middot; Community tutoring program</span>
+          </h3>
+          <p class="entry__body">
+            Connected families and small businesses in my neighborhood to the internet at prices they
+            could afford. At 15, ran a free math program for students in the community. Every one of
+            them passed their exams and one earned a full university scholarship.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="building">
+    <div class="section-head">
+      <h2>What I build</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="entries">
+
+      <article class="entry is-current">
+        <div class="entry__rail"><span class="entry__logo is-empty" data-mark="C" aria-hidden="true"></span><p class="entry__when">2026 &ndash; present</p></div>
+        <div>
+          <h3 class="entry__role">Founder, Clarê
+            <span class="entry__org">WhatsApp bot for Brazilian micro-entrepreneur tax compliance</span>
+          </h3>
+          <p class="entry__body">
+            In production since June 2026 on Python, FastAPI, Railway and Supabase. Clarê logs into
+            the government portal, generates the monthly tax slip and delivers the PDF straight into
+            WhatsApp, so the entrepreneur never opens a website. 37 users on the base, 70% onboarding
+            completion, and three commercial tiers defined. I am deliberately running structured
+            tests on the core hypotheses before spending anything on growth, because I still cannot
+            prove it solves a real pain, scales, or gets paid for.
+          </p>
+        </div>
+      </article>
+
+      <article class="entry is-current">
+        <div class="entry__rail"><span class="entry__logo" data-mark="AF"><img src="images/logos/acelera-favela.png" alt="Acelera Favela logo" loading="lazy"></span><p class="entry__when">Sep 2022 &ndash; present</p></div>
+        <div>
+          <h3 class="entry__role">Project Manager, Acelera Favela
+            <span class="entry__org">Social project &middot; career access for favela talent</span>
+          </h3>
+          <p class="entry__body">
+            The thesis is my own history. Talent exists everywhere, what is missing is access,
+            guidance and network. I am building a social ecosystem that gives low-income Black young
+            people in Brazilian favelas professional growth opportunities through mentoring, training,
+            and publicizing scholarships and job openings. It runs two Saturdays a month, and the goal
+            of this cycle is consistency rather than scale.
+          </p>
+          <figure class="shot entry__shot" style="margin:0;">
+            <img src="images/acelera-favela.jpg" alt="An Acelera Favela session with members of the community" loading="lazy">
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</div>
+
+<section class="next" id="recruiters">
+  <div class="wrap">
+    <p class="label">For recruiters</p>
+    <h2>One next action</h2>
+    <div class="prose">
+      <p>
+        <strong>Give me 20 minutes about a problem you are actually trying to solve.</strong>
+        Not a company overview, not a coffee chat about culture. Send me the problem in advance and
+        I will show up with a point of view on it.
+      </p>
+      <p>
+        I am recruiting for a <strong>Summer 2027 internship</strong> in product strategy, AI
+        applications or business development. My primary direction is agriculture technology with AI
+        at the core. My second is AI infrastructure and applied AI platforms. I am authorized to work
+        in the US on F-1 CPT for the internship.
+      </p>
+    </div>
+    <div class="actions">
+      <a class="btn" href="mailto:ron1998@mit.edu?subject=Summer%202027%20internship%3A%2020%20minutes%3F">Email me a problem</a>
+      <a class="link-alt" href="https://www.linkedin.com/in/ronaldo-fernandes-55650617b/" rel="noopener">LinkedIn &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="label" style="margin:0;">Ronaldo Fernandes &middot; MIT Sloan MBA &rsquo;28</p>
+    <p class="label" style="margin:0;">ron1998@mit.edu</p>
+  </div>
+</footer>
+
+<script>
+// Photo slots degrade on their own: a landscape shot with no file drops out of
+// the layout, and the portrait falls back to the monogram.
+(function () {
+  function markEmpty(img) {
+    var fig = img.parentNode;
+    if (fig && fig.classList) fig.classList.add('is-empty');
+  }
+  var shots = document.querySelectorAll('.shot img, .entry__logo img');
+  for (var i = 0; i < shots.length; i++) {
+    (function (img) {
+      img.addEventListener('error', function () { markEmpty(img); });
+      if (img.complete && img.naturalWidth === 0) markEmpty(img);
+    })(shots[i]);
+  }
+})();
+
+(function () {
+  var canvas = document.getElementById('drift');
+  if (!canvas || !canvas.getContext) return;
+
+  var ctx = canvas.getContext('2d');
+  var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w = 0, h = 0, balls = [], tint = '#a31f34', frame = null;
+
+  function readTint() {
+    var v = getComputedStyle(document.documentElement).getPropertyValue('--accent');
+    tint = (v && v.trim()) || '#a31f34';
+  }
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth;
+    h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function seed() {
+    // roughly one ball per 26k square pixels, so a phone gets a few and a desktop a scattering
+    var n = Math.max(14, Math.min(44, Math.round((w * h) / 26000)));
+    balls = [];
+    for (var i = 0; i < n; i++) {
+      balls.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 1.4 + Math.random() * 3.1,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        a: 0.12 + Math.random() * 0.3
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = tint;
+    for (var i = 0; i < balls.length; i++) {
+      var b = balls[i];
+      ctx.globalAlpha = b.a;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function step() {
+    for (var i = 0; i < balls.length; i++) {
+      var b = balls[i];
+      b.x += b.vx;
+      b.y += b.vy;
+      var pad = b.r + 4;
+      if (b.x < -pad) b.x = w + pad;
+      else if (b.x > w + pad) b.x = -pad;
+      if (b.y < -pad) b.y = h + pad;
+      else if (b.y > h + pad) b.y = -pad;
+    }
+    draw();
+    frame = requestAnimationFrame(step);
+  }
+
+  function start() {
+    if (frame === null && motionOK) frame = requestAnimationFrame(step);
+  }
+  function stop() {
+    if (frame !== null) { cancelAnimationFrame(frame); frame = null; }
+  }
+
+  readTint();
+  resize();
+  seed();
+  draw();
+  start();
+
+  var pending;
+  window.addEventListener('resize', function () {
+    clearTimeout(pending);
+    pending = setTimeout(function () { resize(); seed(); draw(); }, 150);
+  });
+
+  // keep the tint in step with the viewer's theme
+  var scheme = window.matchMedia('(prefers-color-scheme: dark)');
+  var onScheme = function () { readTint(); draw(); };
+  if (scheme.addEventListener) scheme.addEventListener('change', onScheme);
+  else if (scheme.addListener) scheme.addListener(onScheme);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+})();
+</script>
+
+</body>
+</html>

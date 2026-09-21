@@ -450,6 +450,196 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
+
+  /* ---------- Zeus chat widget ---------- */
+  #zeus-launcher {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 40;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--cta-bg);
+    color: var(--cta-ink);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-family: Archivo, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    transition: transform 0.15s ease;
+  }
+  #zeus-launcher:hover { transform: scale(1.06); }
+  #zeus-launcher:focus-visible { outline: 2px solid var(--bright); outline-offset: 3px; }
+
+  #zeus-teaser {
+    position: fixed;
+    bottom: 5.6rem;
+    right: 1.5rem;
+    z-index: 40;
+    max-width: 15.5rem;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 0.9rem 0.9rem 0.2rem 0.9rem;
+    padding: 0.75rem 0.95rem;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    animation: zeus-pop 0.35s ease;
+  }
+  #zeus-teaser button {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink-faint);
+    font-size: 0.7rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+  #zeus-teaser[hidden] { display: none; }
+
+  @keyframes zeus-pop {
+    from { opacity: 0; transform: translateY(6px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  #zeus-panel {
+    position: fixed;
+    bottom: 5.6rem;
+    right: 1.5rem;
+    z-index: 41;
+    width: min(22rem, calc(100vw - 2rem));
+    height: min(32rem, calc(100vh - 8rem));
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 0.9rem;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #zeus-panel[hidden] { display: none; }
+
+  #zeus-head {
+    background: var(--cta-bg);
+    color: var(--cta-ink);
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: none;
+  }
+  #zeus-head .zeus-id { display: flex; align-items: center; gap: 0.6rem; }
+  #zeus-head .zeus-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--cta-ink);
+    color: var(--cta-bg);
+    display: grid;
+    place-items: center;
+    font-family: Archivo, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  #zeus-head h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  #zeus-head p {
+    margin: 0;
+    font-size: 0.72rem;
+    color: var(--cta-soft);
+  }
+  #zeus-close {
+    background: none;
+    border: none;
+    color: var(--cta-ink);
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.2rem;
+  }
+
+  #zeus-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: var(--ground);
+  }
+  .zeus-msg {
+    max-width: 85%;
+    padding: 0.55rem 0.8rem;
+    border-radius: 0.8rem;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+  .zeus-msg.bot {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    color: var(--ink);
+    align-self: flex-start;
+    border-bottom-left-radius: 0.2rem;
+  }
+  .zeus-msg.user {
+    background: var(--accent);
+    color: #ffffff;
+    align-self: flex-end;
+    border-bottom-right-radius: 0.2rem;
+  }
+  .zeus-msg.typing { color: var(--ink-faint); font-style: italic; }
+
+  #zeus-form {
+    flex: none;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-top: 1px solid var(--rule-soft);
+    background: var(--paper);
+  }
+  #zeus-input {
+    flex: 1;
+    border: 1px solid var(--rule);
+    border-radius: 1.4rem;
+    padding: 0.55rem 0.9rem;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 0.88rem;
+    background: var(--ground);
+    color: var(--ink);
+  }
+  #zeus-input:focus-visible { outline: 2px solid var(--bright); outline-offset: 2px; }
+  #zeus-send {
+    border: none;
+    border-radius: 1.4rem;
+    padding: 0 1.1rem;
+    background: var(--cta-bg);
+    color: var(--cta-ink);
+    font-family: Archivo, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  #zeus-send:disabled { opacity: 0.6; cursor: default; }
+
+  @media (max-width: 480px) {
+    #zeus-panel { right: 0.75rem; left: 0.75rem; width: auto; }
+    #zeus-teaser { right: 0.75rem; }
+  }
 </style>
 </head>
 <body>
@@ -646,7 +836,7 @@
       </article>
 
       <article class="entry">
-        <div class="entry__rail"><span class="entry__logo is-empty" data-mark="IB" aria-hidden="true"></span><p class="entry__when">2019 &ndash; 2022</p></div>
+        <div class="entry__rail"><span class="entry__logo" data-mark="IB"><img src="images/logos/ibmec.png" alt="Ibmec logo" loading="lazy"></span><p class="entry__when">2019 &ndash; 2022</p></div>
         <div>
           <h3 class="entry__role">BSc Accounting, Summa Cum Laude
             <span class="entry__org">Ibmec Belo Horizonte</span>
@@ -683,7 +873,7 @@
     <div class="entries">
 
       <article class="entry is-current">
-        <div class="entry__rail"><span class="entry__logo is-empty" data-mark="C" aria-hidden="true"></span><p class="entry__when">2026 &ndash; present</p></div>
+        <div class="entry__rail"><span class="entry__logo" data-mark="C"><img src="images/logos/clare.png" alt="Clar&ecirc; logo" loading="lazy"></span><p class="entry__when">2026 &ndash; present</p></div>
         <div>
           <h3 class="entry__role">Founder, Clarê
             <span class="entry__org">WhatsApp bot for Brazilian micro-entrepreneur tax compliance</span>
@@ -864,6 +1054,128 @@
 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) stop(); else start();
+  });
+})();
+</script>
+
+<div id="zeus-teaser" role="status" hidden>
+  <button type="button" id="zeus-teaser-close" aria-label="Dismiss">&times;</button>
+  Hi, can I help you get to know Ronaldo?
+</div>
+
+<button type="button" id="zeus-launcher" aria-label="Chat with Zeus" aria-haspopup="dialog">Z</button>
+
+<section id="zeus-panel" role="dialog" aria-labelledby="zeus-title" hidden>
+  <header id="zeus-head">
+    <div class="zeus-id">
+      <span class="zeus-avatar" aria-hidden="true">Z</span>
+      <div>
+        <h2 id="zeus-title">Zeus</h2>
+        <p>Ask me about Ronaldo</p>
+      </div>
+    </div>
+    <button type="button" id="zeus-close" aria-label="Close chat">&times;</button>
+  </header>
+  <div id="zeus-messages" aria-live="polite"></div>
+  <form id="zeus-form">
+    <input type="text" id="zeus-input" placeholder="Ask Zeus about Ronaldo&hellip;" autocomplete="off" maxlength="500">
+    <button type="submit" id="zeus-send">Send</button>
+  </form>
+</section>
+
+<script>
+(function () {
+  var launcher = document.getElementById('zeus-launcher');
+  var panel = document.getElementById('zeus-panel');
+  var closeBtn = document.getElementById('zeus-close');
+  var teaser = document.getElementById('zeus-teaser');
+  var teaserClose = document.getElementById('zeus-teaser-close');
+  var messagesEl = document.getElementById('zeus-messages');
+  var form = document.getElementById('zeus-form');
+  var input = document.getElementById('zeus-input');
+  var sendBtn = document.getElementById('zeus-send');
+
+  var history = [];
+  var opened = false;
+
+  function showTeaser() {
+    if (opened) return;
+    try {
+      if (sessionStorage.getItem('zeus-teaser-seen')) return;
+    } catch (e) {}
+    teaser.hidden = false;
+  }
+  function hideTeaser() {
+    teaser.hidden = true;
+    try { sessionStorage.setItem('zeus-teaser-seen', '1'); } catch (e) {}
+  }
+
+  function addMessage(role, text) {
+    var el = document.createElement('div');
+    el.className = 'zeus-msg ' + role;
+    el.textContent = text;
+    messagesEl.appendChild(el);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return el;
+  }
+
+  function openPanel() {
+    opened = true;
+    hideTeaser();
+    panel.hidden = false;
+    if (!history.length) {
+      addMessage('bot', "Hi, I'm Zeus. Ask me anything about Ronaldo's career, MBA, or what he's building.");
+    }
+    input.focus();
+  }
+  function closePanel() {
+    panel.hidden = true;
+  }
+
+  launcher.addEventListener('click', function () {
+    if (panel.hidden) openPanel(); else closePanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+  teaserClose.addEventListener('click', hideTeaser);
+  teaser.addEventListener('click', function (e) {
+    if (e.target === teaserClose) return;
+    openPanel();
+  });
+
+  setTimeout(showTeaser, 2500);
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+
+    addMessage('user', text);
+    history.push({ role: 'user', content: text });
+    input.value = '';
+    sendBtn.disabled = true;
+
+    var typingEl = addMessage('bot typing', 'Zeus is thinking...');
+
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history }),
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        typingEl.remove();
+        var reply = data && data.reply ? data.reply : "Sorry, I couldn't get an answer just now. Try emailing Ronaldo directly at ron1998@mit.edu.";
+        addMessage('bot', reply);
+        history.push({ role: 'assistant', content: reply });
+      })
+      .catch(function () {
+        typingEl.remove();
+        addMessage('bot', "Sorry, I'm having trouble connecting right now. Try emailing Ronaldo directly at ron1998@mit.edu.");
+      })
+      .finally(function () {
+        sendBtn.disabled = false;
+        input.focus();
+      });
   });
 })();
 </script>

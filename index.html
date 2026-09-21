@@ -457,42 +457,52 @@
     bottom: 1.5rem;
     right: 1.5rem;
     z-index: 40;
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 3.9rem;
+    height: 3.9rem;
     border-radius: 50%;
-    border: none;
-    background: var(--cta-bg);
-    color: var(--cta-ink);
+    border: 2px solid var(--cta-bg);
+    background: var(--paper);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     cursor: pointer;
     display: grid;
     place-items: center;
-    font-family: Archivo, Arial, sans-serif;
-    font-weight: 700;
-    font-size: 1.3rem;
+    padding: 0.35rem;
     transition: transform 0.15s ease;
   }
+  #zeus-launcher img { width: 100%; height: 100%; object-fit: contain; }
   #zeus-launcher:hover { transform: scale(1.06); }
   #zeus-launcher:focus-visible { outline: 2px solid var(--bright); outline-offset: 3px; }
 
   #zeus-teaser {
     position: fixed;
-    bottom: 5.6rem;
+    bottom: 5.9rem;
     right: 1.5rem;
     z-index: 40;
     max-width: 15.5rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.55rem;
+    animation: zeus-pop 0.35s ease;
+  }
+  #zeus-teaser img {
+    width: 2.4rem;
+    height: 2.4rem;
+    object-fit: contain;
+    flex: none;
+  }
+  #zeus-teaser .zeus-teaser-bubble {
+    position: relative;
     background: var(--paper);
     color: var(--ink);
     border: 1px solid var(--rule);
-    border-radius: 0.9rem 0.9rem 0.2rem 0.9rem;
+    border-radius: 0.9rem 0.9rem 0.9rem 0.2rem;
     padding: 0.75rem 0.95rem;
     font-family: "Source Serif 4", Georgia, serif;
     font-size: 0.88rem;
     line-height: 1.4;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-    animation: zeus-pop 0.35s ease;
   }
-  #zeus-teaser button {
+  #zeus-teaser .zeus-teaser-bubble button {
     position: absolute;
     top: -0.5rem;
     right: -0.5rem;
@@ -543,17 +553,16 @@
   }
   #zeus-head .zeus-id { display: flex; align-items: center; gap: 0.6rem; }
   #zeus-head .zeus-avatar {
-    width: 2rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 2.4rem;
     border-radius: 50%;
     background: var(--cta-ink);
-    color: var(--cta-bg);
     display: grid;
     place-items: center;
-    font-family: Archivo, Arial, sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
+    flex: none;
+    overflow: hidden;
   }
+  #zeus-head .zeus-avatar img { width: 100%; height: 100%; object-fit: contain; padding: 0.15rem; }
   #zeus-head h2 {
     font-size: 0.95rem;
     font-weight: 700;
@@ -582,8 +591,21 @@
     gap: 0.6rem;
     background: var(--ground);
   }
-  .zeus-msg {
+  .zeus-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.4rem;
     max-width: 85%;
+  }
+  .zeus-row.user { align-self: flex-end; flex-direction: row-reverse; }
+  .zeus-row.bot { align-self: flex-start; }
+  .zeus-row img {
+    width: 1.6rem;
+    height: 1.6rem;
+    object-fit: contain;
+    flex: none;
+  }
+  .zeus-msg {
     padding: 0.55rem 0.8rem;
     border-radius: 0.8rem;
     font-size: 0.88rem;
@@ -593,13 +615,11 @@
     background: var(--paper);
     border: 1px solid var(--rule-soft);
     color: var(--ink);
-    align-self: flex-start;
     border-bottom-left-radius: 0.2rem;
   }
   .zeus-msg.user {
     background: var(--accent);
     color: #ffffff;
-    align-self: flex-end;
     border-bottom-right-radius: 0.2rem;
   }
   .zeus-msg.typing { color: var(--ink-faint); font-style: italic; }
@@ -1058,17 +1078,22 @@
 })();
 </script>
 
-<div id="zeus-teaser" role="status" hidden>
-  <button type="button" id="zeus-teaser-close" aria-label="Dismiss">&times;</button>
-  Hi, can I help you get to know Ronaldo?
+<div id="zeus-teaser" hidden>
+  <img src="images/zeus.png" alt="" aria-hidden="true">
+  <div class="zeus-teaser-bubble" role="status">
+    <button type="button" id="zeus-teaser-close" aria-label="Dismiss">&times;</button>
+    Hi, can I help you get to know Ronaldo?
+  </div>
 </div>
 
-<button type="button" id="zeus-launcher" aria-label="Chat with Zeus" aria-haspopup="dialog">Z</button>
+<button type="button" id="zeus-launcher" aria-haspopup="dialog">
+  <img src="images/zeus.png" alt="Chat with Zeus">
+</button>
 
 <section id="zeus-panel" role="dialog" aria-labelledby="zeus-title" hidden>
   <header id="zeus-head">
     <div class="zeus-id">
-      <span class="zeus-avatar" aria-hidden="true">Z</span>
+      <span class="zeus-avatar"><img src="images/zeus.png" alt="" aria-hidden="true"></span>
       <div>
         <h2 id="zeus-title">Zeus</h2>
         <p>Ask me about Ronaldo</p>
@@ -1111,12 +1136,28 @@
   }
 
   function addMessage(role, text) {
-    var el = document.createElement('div');
-    el.className = 'zeus-msg ' + role;
-    el.textContent = text;
-    messagesEl.appendChild(el);
+    var classes = role.split(' ');
+    var isBot = classes[0] === 'bot';
+
+    var row = document.createElement('div');
+    row.className = 'zeus-row ' + (isBot ? 'bot' : 'user');
+
+    if (isBot) {
+      var avatar = document.createElement('img');
+      avatar.src = 'images/zeus.png';
+      avatar.alt = '';
+      avatar.setAttribute('aria-hidden', 'true');
+      row.appendChild(avatar);
+    }
+
+    var bubble = document.createElement('div');
+    bubble.className = 'zeus-msg ' + role;
+    bubble.textContent = text;
+    row.appendChild(bubble);
+
+    messagesEl.appendChild(row);
     messagesEl.scrollTop = messagesEl.scrollHeight;
-    return el;
+    return row;
   }
 
   function openPanel() {

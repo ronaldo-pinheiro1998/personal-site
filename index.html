@@ -252,20 +252,6 @@
   .portrait__frame.is-empty { display: block; }
   .portrait__frame.is-empty img { display: none; }
   .portrait__frame.is-empty .portrait__mark { display: grid; }
-  /* no photo, no caption about the photo */
-  .portrait__frame.is-empty ~ .portrait__cap { display: none; }
-
-  .portrait__cap {
-    margin-top: .85rem;
-    font-size: .95rem;
-    line-height: 1.5;
-    color: var(--ink-soft);
-  }
-  .portrait__cap .label {
-    display: block;
-    color: var(--accent);
-    margin-bottom: .3rem;
-  }
 
   .entry__shot {
     aspect-ratio: 3 / 2;
@@ -325,7 +311,7 @@
 
   /* ---------- Sections ---------- */
   section { padding-block: clamp(2.25rem, 6vw, 3.75rem); }
-  #about, #experience, #building, #recruiters { scroll-margin-top: 4.5rem; }
+  #about, #experience, #building, #hobbies, #recruiters { scroll-margin-top: 4.5rem; }
   .section-head {
     display: flex;
     align-items: baseline;
@@ -412,6 +398,31 @@
   }
   .roles li:first-child { color: var(--ink); }
   .roles__when { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Hobbies ---------- */
+  .hobbies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1.75rem;
+  }
+  .hobby { display: flex; flex-direction: column; }
+  .hobby__shot {
+    aspect-ratio: 3 / 2;
+    margin: 0;
+  }
+  .hobby__name {
+    font-family: Archivo, Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin-top: .9rem;
+  }
+  .hobby__desc {
+    margin: .35rem 0 0;
+    font-size: .92rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
 
   /* ---------- Next action ---------- */
   .next {
@@ -732,6 +743,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#building">Building</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
       <li><a href="#recruiters">Recruiters</a></li>
     </ul>
     <p class="label" style="margin:0;">MBA Candidate, Class of 2028</p>
@@ -754,21 +766,21 @@
       </div>
       <figure class="portrait">
         <div class="shot portrait__frame">
-          <img src="images/portrait.jpg" alt="A 7-Eleven coffee held on a sunlit sidewalk" width="900" height="1125">
+          <img src="images/portrait.jpg" alt="Portrait of Ronaldo Fernandes" width="900" height="1125">
           <span class="portrait__mark" aria-hidden="true">RF</span>
         </div>
-        <figcaption class="portrait__cap">
-          <span class="label">Daily habit</span>
-          I like cheap coffee. Same cup most days. It is the ritual that starts the work.
-        </figcaption>
       </figure>
     </div>
   </div>
 
+  <div class="section-head signals-head">
+    <h2>My Impact Numbers</h2>
+    <span class="rule"></span>
+  </div>
   <dl class="signals">
     <div class="signal">
-      <dt>Summa Cum Laude</dt>
-      <dd>Accounting, Ibmec BH 2022. Top of the class every year, full ProUni scholarship.</dd>
+      <dt>Top of Class</dt>
+      <dd>Summa Cum Laude in Accounting, Ibmec BH 2022, full ProUni scholarship.</dd>
     </div>
     <div class="signal">
       <dt>R$ 70M</dt>
@@ -952,6 +964,43 @@
         </div>
       </article>
 
+    </div>
+  </section>
+
+  <section id="hobbies" class="reveal">
+    <div class="section-head">
+      <h2>Outside of work</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="hobbies">
+      <div class="hobby">
+        <figure class="shot hobby__shot">
+          <img src="images/hobbies/coffee.jpg" alt="A 7-Eleven coffee held on a sunlit sidewalk" loading="lazy">
+        </figure>
+        <h3 class="hobby__name">Cheap Coffee</h3>
+        <p class="hobby__desc">Same cup most days. It's the ritual that starts the work, not the taste.</p>
+      </div>
+      <div class="hobby">
+        <figure class="shot hobby__shot">
+          <img src="images/hobbies/lifting.jpg" alt="Ronaldo at the gym after a lifting session" loading="lazy">
+        </figure>
+        <h3 class="hobby__name">Lifting</h3>
+        <p class="hobby__desc">Non-negotiable gym time. The one hour nobody's Slack message can touch.</p>
+      </div>
+      <div class="hobby">
+        <figure class="shot hobby__shot">
+          <img src="images/hobbies/soccer.jpg" alt="A packed Brazilian soccer stadium with colored smoke" loading="lazy">
+        </figure>
+        <h3 class="hobby__name">Soccer</h3>
+        <p class="hobby__desc">Diehard fan, matchday smoke included. Nothing about it is a spreadsheet.</p>
+      </div>
+      <div class="hobby">
+        <figure class="shot hobby__shot">
+          <img src="images/hobbies/sci-fi.jpg" alt="A still from the sci-fi film Interstellar" loading="lazy">
+        </figure>
+        <h3 class="hobby__name">Sci-Fi Movies</h3>
+        <p class="hobby__desc">A sucker for a good save-humanity-through-science plot. Interstellar on repeat.</p>
+      </div>
     </div>
   </section>
 

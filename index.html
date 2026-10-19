@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ronaldo Fernandes</title>
-<meta name="description" content="Ronaldo Fernandes, MIT Sloan MBA '28. Ex-McKinsey and Globo strategy. Recruiting for a Summer 2027 internship in AgTech and applied AI.">
+<title>Ronaldo Pinheiro</title>
+<meta name="description" content="Ronaldo Pinheiro, MIT Sloan MBA '28. Ex-McKinsey and Globo strategy. Recruiting for a Summer 2027 internship at an AI startup.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -311,7 +311,7 @@
 
   /* ---------- Sections ---------- */
   section { padding-block: clamp(2.25rem, 6vw, 3.75rem); }
-  #about, #experience, #building, #hobbies, #recruiters { scroll-margin-top: 4.5rem; }
+  #about, #experience, #building, #education, #recruiters { scroll-margin-top: 4.5rem; }
   .section-head {
     display: flex;
     align-items: baseline;
@@ -377,6 +377,17 @@
   .entry__body + .entry__body { margin-top: .75rem; }
   .entry.is-current .entry__when { color: var(--accent); }
 
+  .entry__list {
+    max-width: var(--measure);
+    margin: .7rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 1.02rem;
+    line-height: 1.58;
+    color: var(--ink-soft);
+  }
+  .entry__list li + li { margin-top: .4rem; }
+  .entry__list li::marker { color: var(--accent); }
+
   /* progression within one employer */
   .roles {
     list-style: none;
@@ -399,30 +410,78 @@
   .roles li:first-child { color: var(--ink); }
   .roles__when { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
 
-  /* ---------- Hobbies ---------- */
-  .hobbies {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    gap: 1.75rem;
+  /* ---------- Product carousel ---------- */
+  .carousel-wrap { position: relative; }
+  .carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1px;
+    padding-bottom: .5rem;
+    margin: 0 -1px;
+    -webkit-overflow-scrolling: touch;
   }
-  .hobby { display: flex; flex-direction: column; }
-  .hobby__shot {
-    aspect-ratio: 3 / 2;
-    margin: 0;
+  .carousel::-webkit-scrollbar { height: 6px; }
+  .carousel::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 999px; }
+
+  .product-card {
+    flex: 0 0 min(20rem, 85vw);
+    scroll-snap-align: start;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
   }
-  .hobby__name {
+  .product-card__head {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+  }
+  .product-card__name {
     font-family: Archivo, Arial, sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: -.01em;
-    margin-top: .9rem;
+    letter-spacing: -.012em;
   }
-  .hobby__desc {
-    margin: .35rem 0 0;
+  .product-card__desc {
+    margin: 1rem 0 0;
     font-size: .92rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--ink-soft);
+    flex: 1;
   }
+  .product-card__link {
+    margin-top: 1.25rem;
+    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    font-size: .8rem;
+    letter-spacing: .03em;
+    color: var(--accent);
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .product-card__link:hover { text-decoration: underline; }
+
+  .carousel-nav {
+    display: flex;
+    gap: .6rem;
+    margin-top: 1.25rem;
+  }
+  .carousel-nav button {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 1rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+  .carousel-nav button:hover { border-color: var(--accent); color: var(--accent); }
+  .carousel-nav button:focus-visible { outline: 2px solid var(--bright); outline-offset: 2px; }
 
   /* ---------- Next action ---------- */
   .next {
@@ -461,6 +520,23 @@
   }
   .btn:hover { background: var(--cta-soft); }
   .btn:focus-visible { outline: 2px solid var(--cta-ink); outline-offset: 3px; }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    font-family: Archivo, Arial, sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: -.005em;
+    text-decoration: none;
+    padding: .65rem 1.25rem;
+  }
+  .btn-outline:hover { background: var(--accent); color: #ffffff; }
+  .btn-outline:focus-visible { outline: 2px solid var(--bright); outline-offset: 3px; }
+  .hero__actions { margin-top: 1.5rem; }
   .link-alt {
     color: var(--cta-ink);
     font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -741,9 +817,9 @@
     </a>
     <ul class="masthead-nav">
       <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
       <li><a href="#building">Building</a></li>
-      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#recruiters">Recruiters</a></li>
     </ul>
     <p class="label" style="margin:0;">MBA Candidate, Class of 2028</p>
@@ -756,18 +832,21 @@
     <div class="hero__grid">
       <div>
         <p class="label">Cambridge, MA &nbsp;/&nbsp; Belo Horizonte, Brazil</p>
-        <h1>Ronaldo<br>Fernandes</h1>
+        <h1>Ronaldo<br>Pinheiro</h1>
         <p class="standfirst">
           Strategy and applied AI, built from the ground up. Three and a half years at
           <strong>McKinsey</strong>, a year running corporate strategy at <strong>Globo</strong>,
           and a tax-compliance product of my own in production. Recruiting for a
           <strong>Summer 2027 internship</strong> where AI solves a real problem for real people.
         </p>
+        <div class="actions hero__actions">
+          <a class="btn-outline" href="https://www.linkedin.com/in/ronaldo-fernandes-55650617b/" rel="noopener">LinkedIn &rarr;</a>
+        </div>
       </div>
       <figure class="portrait">
         <div class="shot portrait__frame">
-          <img src="images/portrait.jpg" alt="Portrait of Ronaldo Fernandes" width="900" height="1125">
-          <span class="portrait__mark" aria-hidden="true">RF</span>
+          <img src="images/portrait.jpg" alt="Portrait of Ronaldo Pinheiro" width="900" height="1125">
+          <span class="portrait__mark" aria-hidden="true">RP</span>
         </div>
       </figure>
     </div>
@@ -779,16 +858,20 @@
   </div>
   <dl class="signals">
     <div class="signal">
-      <dt>Top of Class</dt>
-      <dd>Summa Cum Laude in Accounting, Ibmec BH 2022, full ProUni scholarship.</dd>
+      <dt>9.2/10</dt>
+      <dd>GPA equivalent in my undergrad, Accounting at Ibmec BH, Summa Cum Laude.</dd>
+    </div>
+    <div class="signal">
+      <dt>USD 100M</dt>
+      <dd>In cost savings using linear regression models to strengthen credit portfolio management at a bank.</dd>
     </div>
     <div class="signal">
       <dt>R$ 70M</dt>
-      <dd>Board-approved investment at Globo, run through the transformation office I built.</dd>
+      <dd>Board-approved investment behind the AI implementation plan I created at Globo.</dd>
     </div>
     <div class="signal">
       <dt>80 hires</dt>
-      <dd>Plus 150+ scholarships from the McKinsey Black community conference I led in Rio, 2023.</dd>
+      <dd>From the McKinsey Juntos conference I led in Rio, reaching 400 people, plus 150+ scholarships.</dd>
     </div>
   </dl>
 
@@ -828,6 +911,60 @@
     </div>
   </section>
 
+  <section id="building" class="reveal">
+    <div class="section-head">
+      <h2>What Am I Building?</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel" id="product-carousel">
+
+        <article class="product-card">
+          <div class="product-card__head">
+            <span class="entry__logo" data-mark="C"><img src="images/logos/clare.png" alt="Clar&ecirc; logo" loading="lazy"></span>
+            <h3 class="product-card__name">Clarê</h3>
+          </div>
+          <p class="product-card__desc">
+            AI chatbot running on WhatsApp that automates tax and fiscal processes for Brazilian
+            micro-entrepreneurs, in a conversational way.
+          </p>
+          <a class="product-card__link" href="https://claremei.com.br/" target="_blank" rel="noopener">Visit product &rarr;</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__head">
+            <span class="entry__logo is-empty" data-mark="S" aria-hidden="true"></span>
+            <h3 class="product-card__name">Sight</h3>
+          </div>
+          <p class="product-card__desc">
+            User-friendly soybean volume prediction that helps small farmers in Brazil plan their
+            cultivation season, organize operational cash flow, connect to suppliers, and get
+            access to production best practices.
+          </p>
+          <a class="product-card__link" href="https://sight-soybean-forecast.vercel.app/en/" target="_blank" rel="noopener">Visit product &rarr;</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-card__head">
+            <span class="entry__logo" data-mark="AF"><img src="images/logos/acelera-favela.png" alt="Acelera Favela logo" loading="lazy"></span>
+            <h3 class="product-card__name">Acelera Favela</h3>
+          </div>
+          <p class="product-card__desc">
+            Social project focused on getting underserved youth into undergraduate programs and
+            the formal job market, reducing criminality rates and generating local GDP and
+            economic mobility.
+          </p>
+          <a class="product-card__link" href="https://www.linkedin.com/company/acelera-favela/posts/?viewAsMember=true" target="_blank" rel="noopener">Visit product &rarr;</a>
+        </article>
+
+      </div>
+      <div class="carousel-nav">
+        <button type="button" id="carousel-prev" aria-label="Previous product">&larr;</button>
+        <button type="button" id="carousel-next" aria-label="Next product">&rarr;</button>
+      </div>
+    </div>
+  </section>
+
   <section id="experience" class="reveal">
     <div class="section-head">
       <h2>Experience</h2>
@@ -836,32 +973,17 @@
     <div class="entries">
 
       <article class="entry is-current">
-        <div class="entry__rail"><span class="entry__logo" data-mark="MIT"><img src="images/logos/mit-sloan.png" alt="MIT Sloan logo" loading="lazy"></span><p class="entry__when">Sep 2026 &ndash; Sep 2028</p></div>
-        <div>
-          <h3 class="entry__role">MBA Candidate
-            <span class="entry__org">MIT Sloan School of Management &middot; Cambridge, MA</span>
-          </h3>
-          <p class="entry__body">
-            Core semester in Data, Models &amp; Decisions, Financial Accounting, Economic Analysis,
-            Communication for Leaders and Organizational Processes. Building depth in three areas:
-            AI product strategy, agribusiness domain knowledge, and venture building.
-          </p>
-        </div>
-      </article>
-
-      <article class="entry">
         <div class="entry__rail"><span class="entry__logo" data-mark="G"><img src="images/logos/globo.png" alt="Globo logo" loading="lazy"></span><p class="entry__when">Jul 2025 &ndash; Jul 2026</p></div>
         <div>
           <h3 class="entry__role">Manager of Corporate Strategy
             <span class="entry__org">Globo &middot; Rio de Janeiro &middot; McKinsey third-year-out placement</span>
           </h3>
-          <p class="entry__body">
-            Built Globo's AI strategy end to end, leading the board to approve an AI-first
-            venture-building cell and a process-redesign cell running agents in the
-            highest-potential functions. Also ran the transformation office for a R$ 70M
-            board-approved investment program and led a feasibility study for a new business
-            channel. My first formal team, and my first real lesson in leading through people.
-          </p>
+          <ul class="entry__list">
+            <li>Built Globo's AI strategy end to end, leading the board to approve an AI-first venture-building cell and a process-redesign cell running agents in the highest-potential functions</li>
+            <li>Ran the transformation office for the R$ 70M board-approved investment behind that AI implementation plan</li>
+            <li>Led a feasibility study for a new business channel</li>
+            <li>My first formal team, and my first real lesson in leading through people</li>
+          </ul>
         </div>
       </article>
 
@@ -876,15 +998,14 @@
             <li><span>Business Analyst</span><span class="roles__when">Jan 2023 &ndash; Jan 2024</span></li>
             <li><span>Business Analyst Intern</span><span class="roles__when">Feb 2022 &ndash; Jan 2023</span></li>
           </ol>
-          <p class="entry__body">
-            15+ engagements across financial services, agriculture and media, sponsored by the firm
-            for this MBA. On an agribusiness banking assessment, I built my own market model instead
-            of using a British vendor's, concluding a proposed partnership would not be competitive.
-            Also led McKinsey's largest Black community employment conference in Rio (2023): 80 hires
-            and 150+ scholarships, now an annual initiative.
-          </p>
+          <ul class="entry__list">
+            <li>20+ engagements across financial services, agriculture and media</li>
+            <li>Used linear regression models to strengthen credit portfolio risk management for a bank client, generating USD 100M in cost savings</li>
+            <li>On an agribusiness banking assessment, built my own market model instead of using a British vendor's, concluding a proposed partnership would not be competitive</li>
+            <li>Led the McKinsey Juntos conference in Rio (2023), reaching 400 people: 80 hires and 150+ scholarships, now an annual initiative</li>
+          </ul>
           <figure class="shot entry__shot" style="margin:0;">
-            <img src="images/mckinsey-conference.jpg" alt="Ronaldo leading the McKinsey Black community employment conference in Rio de Janeiro, 2023" loading="lazy">
+            <img src="images/mckinsey-conference.jpg" alt="Ronaldo leading the McKinsey Juntos conference in Rio de Janeiro, 2023" loading="lazy">
           </figure>
         </div>
       </article>
@@ -899,13 +1020,34 @@
             <li><span>Financial Consultant</span><span class="roles__when">Feb 2020 &ndash; Feb 2021</span></li>
             <li><span>Financial Accounting Intern</span><span class="roles__when">Sep 2019 &ndash; Feb 2020</span></li>
           </ol>
+          <ul class="entry__list">
+            <li>Managed financial, investment, accounting and legal affairs for professional soccer athletes: invoicing, tax calculation, advisory filings, M&amp;A, and asset and financial planning</li>
+            <li>Analyzed athlete cash flows to find the breakeven point between investment portfolios and their spending</li>
+            <li>Where the Brazilian tax code stopped being theory for me, and the reason Clarê exists today</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <div class="section-head">
+      <h2>Education</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="entries">
+
+      <article class="entry is-current">
+        <div class="entry__rail"><span class="entry__logo" data-mark="MIT"><img src="images/logos/mit-sloan.png" alt="MIT Sloan logo" loading="lazy"></span><p class="entry__when">Sep 2026 &ndash; Sep 2028</p></div>
+        <div>
+          <h3 class="entry__role">MBA Candidate
+            <span class="entry__org">MIT Sloan School of Management &middot; Cambridge, MA</span>
+          </h3>
           <p class="entry__body">
-            Worked alongside senior accountants managing the financial, investment, accounting and
-            legal affairs of professional soccer athletes, covering invoicing, tax calculation and
-            advisory filings, M&amp;A, and asset and financial planning. Started by analyzing athlete
-            cash flows to find the breakeven point between investment portfolios and their spending.
-            This is where the Brazilian tax code stopped being theory for me, and it is the reason
-            Clarê exists today.
+            Core semester in Data, Models &amp; Decisions, Financial Accounting, Economic Analysis,
+            Communication for Leaders and Organizational Processes. Building depth at the
+            intersection of AI products, machine learning, and venture building.
           </p>
         </div>
       </article>
@@ -917,90 +1059,12 @@
             <span class="entry__org">Ibmec Belo Horizonte</span>
           </h3>
           <p class="entry__body">
-            Full government ProUni scholarship. Voted best student of the program every year and
-            best of the graduating class.
+            9.2/10 GPA equivalent. Full government ProUni scholarship. Voted best student of the
+            program every year and best of the graduating class.
           </p>
         </div>
       </article>
 
-    </div>
-  </section>
-
-  <section id="building" class="reveal">
-    <div class="section-head">
-      <h2>What I build</h2>
-      <span class="rule"></span>
-    </div>
-    <div class="entries">
-
-      <article class="entry is-current">
-        <div class="entry__rail"><span class="entry__logo" data-mark="C"><img src="images/logos/clare.png" alt="Clar&ecirc; logo" loading="lazy"></span><p class="entry__when">2026 &ndash; present</p></div>
-        <div>
-          <h3 class="entry__role">Founder, Clarê
-            <span class="entry__org">WhatsApp bot for Brazilian micro-entrepreneur tax compliance</span>
-          </h3>
-          <p class="entry__body">
-            In production since June 2026. Clarê logs into the government portal, generates the
-            monthly tax slip and delivers the PDF straight into WhatsApp. 37 users, 70% onboarding
-            completion. I'm deliberately testing the core hypotheses before spending on growth.
-          </p>
-        </div>
-      </article>
-
-      <article class="entry is-current">
-        <div class="entry__rail"><span class="entry__logo" data-mark="AF"><img src="images/logos/acelera-favela.png" alt="Acelera Favela logo" loading="lazy"></span><p class="entry__when">Sep 2022 &ndash; present</p></div>
-        <div>
-          <h3 class="entry__role">Project Manager, Acelera Favela
-            <span class="entry__org">Social project &middot; career access for favela talent</span>
-          </h3>
-          <p class="entry__body">
-            The thesis is my own history: talent exists everywhere, what's missing is access,
-            guidance and network. Gives low-income Black youth in Brazilian favelas mentoring,
-            training, and access to scholarships and job openings. Runs two Saturdays a month.
-          </p>
-          <figure class="shot entry__shot" style="margin:0;">
-            <img src="images/acelera-favela.jpg" alt="An Acelera Favela session with members of the community" loading="lazy">
-          </figure>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section id="hobbies" class="reveal">
-    <div class="section-head">
-      <h2>Outside of work</h2>
-      <span class="rule"></span>
-    </div>
-    <div class="hobbies">
-      <div class="hobby">
-        <figure class="shot hobby__shot">
-          <img src="images/hobbies/coffee.jpg" alt="A 7-Eleven coffee held on a sunlit sidewalk" loading="lazy">
-        </figure>
-        <h3 class="hobby__name">Cheap Coffee</h3>
-        <p class="hobby__desc">Same cup most days. It's the ritual that starts the work, not the taste.</p>
-      </div>
-      <div class="hobby">
-        <figure class="shot hobby__shot">
-          <img src="images/hobbies/lifting.jpg" alt="Ronaldo at the gym after a lifting session" loading="lazy">
-        </figure>
-        <h3 class="hobby__name">Lifting</h3>
-        <p class="hobby__desc">Non-negotiable gym time. The one hour nobody's Slack message can touch.</p>
-      </div>
-      <div class="hobby">
-        <figure class="shot hobby__shot">
-          <img src="images/hobbies/soccer.jpg" alt="A packed Brazilian soccer stadium with colored smoke" loading="lazy">
-        </figure>
-        <h3 class="hobby__name">Soccer</h3>
-        <p class="hobby__desc">Diehard fan, matchday smoke included. Nothing about it is a spreadsheet.</p>
-      </div>
-      <div class="hobby">
-        <figure class="shot hobby__shot">
-          <img src="images/hobbies/sci-fi.jpg" alt="A still from the sci-fi film Interstellar" loading="lazy">
-        </figure>
-        <h3 class="hobby__name">Sci-Fi Movies</h3>
-        <p class="hobby__desc">A sucker for a good save-humanity-through-science plot. Interstellar on repeat.</p>
-      </div>
     </div>
   </section>
 
@@ -1011,12 +1075,12 @@
     </div>
     <div class="prose">
       <p class="lead">
-        Recruiting for a <strong>Summer 2027 internship</strong> in product strategy, AI
-        applications or business development.
+        Recruiting for a <strong>Summer 2027 internship at an AI startup</strong>, at the
+        intersection of frontier models and the products that ship them to real users.
       </p>
       <p>
-        Primary direction: <strong>AgTech with AI at the core</strong>. Second: AI infrastructure
-        and applied AI platforms. Authorized to work in the US on F-1 CPT for the internship.
+        Close enough to the technology to know what's possible, close enough to the user to make
+        it matter. Authorized to work in the US on F-1 CPT for the internship.
       </p>
     </div>
     <ul class="skills">
@@ -1027,9 +1091,6 @@
       <li>Executive &amp; Board Communication</li>
       <li>Cross-Functional &amp; PMO Leadership</li>
     </ul>
-    <div class="actions">
-      <a class="link-alt link-alt--dark" href="https://www.linkedin.com/in/ronaldo-fernandes-55650617b/" rel="noopener">LinkedIn &rarr;</a>
-    </div>
   </section>
 
 </div>
@@ -1052,7 +1113,7 @@
 
 <footer>
   <div class="wrap">
-    <p class="label" style="margin:0;">Ronaldo Fernandes &middot; MIT Sloan MBA &rsquo;28</p>
+    <p class="label" style="margin:0;">Ronaldo Pinheiro &middot; MIT Sloan MBA &rsquo;28</p>
     <p class="label" style="margin:0;">ron1998@mit.edu</p>
   </div>
 </footer>
@@ -1093,6 +1154,22 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   for (var j = 0; j < reveals.length; j++) observer.observe(reveals[j]);
+})();
+
+(function () {
+  var track = document.getElementById('product-carousel');
+  var prev = document.getElementById('carousel-prev');
+  var next = document.getElementById('carousel-next');
+  if (!track || !prev || !next) return;
+
+  function scrollByCard(dir) {
+    var card = track.querySelector('.product-card');
+    var step = card ? card.getBoundingClientRect().width + 24 : 320;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', function () { scrollByCard(-1); });
+  next.addEventListener('click', function () { scrollByCard(1); });
 })();
 
 (function () {

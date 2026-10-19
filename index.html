@@ -75,6 +75,7 @@
   }
   .masthead,
   body > .wrap,
+  #recruiters,
   footer { position: relative; z-index: 1; }
 
   body {
@@ -526,6 +527,24 @@
     border: 1px solid var(--rule);
     border-radius: 999px;
     padding: .45rem .95rem;
+  }
+
+  /* ---------- Recruiters band ---------- */
+  #recruiters {
+    background: var(--cta-bg);
+    color: var(--cta-ink);
+    margin-block: clamp(2rem, 6vw, 3.5rem) 0;
+    padding-block: clamp(2.75rem, 7vw, 4.5rem);
+  }
+  #recruiters .section-head h2 { color: var(--cta-ink); }
+  #recruiters .section-head .rule { background: rgba(255, 255, 255, .3); }
+  #recruiters .label { color: var(--cta-soft); }
+  #recruiters .prose p { color: var(--cta-soft); }
+  #recruiters .prose p strong { color: var(--cta-ink); font-weight: 600; }
+  #recruiters .skills li {
+    color: var(--cta-ink);
+    background: rgba(255, 255, 255, .12);
+    border-color: rgba(255, 255, 255, .35);
   }
 
   /* ---------- Footer ---------- */
@@ -1030,7 +1049,10 @@
     </div>
   </section>
 
-  <section id="recruiters" class="reveal">
+</div>
+
+<section id="recruiters" class="reveal">
+  <div class="wrap">
     <div class="section-head">
       <h2>For recruiters</h2>
       <span class="rule"></span>
@@ -1071,9 +1093,8 @@
         <li>Empathy</li>
       </ul>
     </div>
-  </section>
-
-</div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">

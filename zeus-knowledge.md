@@ -12,7 +12,7 @@ at ron1998@mit.edu.
 - Currently based in Cambridge, MA (MIT Sloan) and Belo Horizonte, Brazil.
 - MBA Candidate, MIT Sloan School of Management, Class of 2028 (Sep 2026 – Sep 2028).
 - Recruiting for a Summer 2027 internship at an AI startup, at the intersection of
-  frontier models and the products that put them into people's hands. Authorized to
+  model building, training and evaluation, and product shipping. Authorized to
   work in the US on F-1 CPT for the internship.
 - Contact: ron1998@mit.edu · LinkedIn: linkedin.com/in/ronaldo-fernandes-55650617b
 
@@ -62,8 +62,8 @@ the MBA). Globo is the largest media company in Latin America.
   industry, after a post-MBA return to McKinsey (contractual obligation: 2
   years).
 - Recruiting goal: an internship and eventual career at an AI startup, sitting
-  at the intersection of frontier models and the products that ship them to
-  real users — close enough to the technology to know what's possible, close
+  at the intersection of model building, training and evaluation, and product
+  shipping — close enough to the technology to know what's possible, close
   enough to the user to make it matter.
 - Self-assessment: sees himself as a builder more than an advisor or capital
   allocator — wants to use AI to solve real problems for real people, not build

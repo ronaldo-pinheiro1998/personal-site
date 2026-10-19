@@ -11,7 +11,7 @@
 <style>
   /* ---- MIT palette: Cardinal Red, Bright Red, Silver Gray ---- */
   :root {
-    --ground:    #faf9f8;
+    --ground:    #ffffff;
     --paper:     #ffffff;
     --ink:       #141414;
     --ink-soft:  #55504e;
@@ -75,7 +75,6 @@
   }
   .masthead,
   body > .wrap,
-  .next,
   footer { position: relative; z-index: 1; }
 
   body {
@@ -151,7 +150,6 @@
     height: 2.9rem;
     padding: 3px;
     background: #ffffff;
-    border: 1px solid var(--rule);
     overflow: hidden;
   }
   .entry__logo img {
@@ -445,6 +443,7 @@
     font-weight: 700;
     letter-spacing: -.012em;
   }
+  .product-card__wordmark { height: 2.1rem; width: auto; max-width: 100%; }
   .product-card__desc {
     margin: 1rem 0 0;
     font-size: .92rem;
@@ -483,23 +482,6 @@
   .carousel-nav button:hover { border-color: var(--accent); color: var(--accent); }
   .carousel-nav button:focus-visible { outline: 2px solid var(--bright); outline-offset: 2px; }
 
-  /* ---------- Next action ---------- */
-  .next {
-    background: var(--cta-bg);
-    color: var(--cta-ink);
-    margin-block: clamp(2rem, 6vw, 3.5rem) 0;
-  }
-  .next .wrap { padding-block: clamp(2.75rem, 7vw, 4.5rem); }
-  .next .label { color: var(--cta-soft); }
-  .next h2 {
-    font-size: var(--step-3);
-    font-weight: 700;
-    letter-spacing: -.022em;
-    margin-block: .55rem 1.5rem;
-  }
-  .next .prose p { color: var(--cta-soft); }
-  .next .prose p strong { color: var(--cta-ink); font-weight: 600; }
-
   .actions {
     display: flex;
     flex-wrap: wrap;
@@ -507,19 +489,6 @@
     gap: 1rem 1.5rem;
     margin-top: 2rem;
   }
-  .btn {
-    display: inline-block;
-    background: var(--cta-ink);
-    color: var(--cta-bg);
-    font-family: Archivo, Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: -.005em;
-    text-decoration: none;
-    padding: .85rem 1.5rem;
-  }
-  .btn:hover { background: var(--cta-soft); }
-  .btn:focus-visible { outline: 2px solid var(--cta-ink); outline-offset: 3px; }
   .btn-outline {
     display: inline-flex;
     align-items: center;
@@ -537,21 +506,15 @@
   .btn-outline:hover { background: var(--accent); color: #ffffff; }
   .btn-outline:focus-visible { outline: 2px solid var(--bright); outline-offset: 3px; }
   .hero__actions { margin-top: 1.5rem; }
-  .link-alt {
-    color: var(--cta-ink);
-    font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-    font-size: .82rem;
-    letter-spacing: .04em;
-    text-underline-offset: 4px;
-  }
-  .link-alt--dark { color: var(--accent); }
 
+  .skill-group { margin-top: 1.75rem; }
+  .skill-group + .skill-group { margin-top: 1.5rem; }
   .skills {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     gap: .6rem;
-    margin: 1.75rem 0 0;
+    margin: .75rem 0 0;
     padding: 0;
   }
   .skills li {
@@ -933,8 +896,7 @@
 
         <article class="product-card">
           <div class="product-card__head">
-            <span class="entry__logo is-empty" data-mark="S" aria-hidden="true"></span>
-            <h3 class="product-card__name">Sight</h3>
+            <img class="product-card__wordmark" src="images/logos/sight.png" alt="Sight logo">
           </div>
           <p class="product-card__desc">
             User-friendly soybean volume prediction that helps small farmers in Brazil plan their
@@ -1076,40 +1038,42 @@
     <div class="prose">
       <p class="lead">
         Recruiting for a <strong>Summer 2027 internship at an AI startup</strong>, at the
-        intersection of frontier models and the products that ship them to real users.
+        intersection of model building, training and evaluation, and product shipping.
       </p>
       <p>
         Close enough to the technology to know what's possible, close enough to the user to make
         it matter. Authorized to work in the US on F-1 CPT for the internship.
       </p>
     </div>
-    <ul class="skills">
-      <li>Strategic Planning &amp; Structured Problem-Solving</li>
-      <li>Financial &amp; Business-Case Modeling</li>
-      <li>Applied AI Product Strategy</li>
-      <li>Agile &amp; Product Management</li>
-      <li>Executive &amp; Board Communication</li>
-      <li>Cross-Functional &amp; PMO Leadership</li>
-    </ul>
+    <div class="skill-group">
+      <p class="label">Hard Skills</p>
+      <ul class="skills">
+        <li>Strategic Planning &amp; Structured Problem-Solving</li>
+        <li>Business Case &amp; Financial Modeling</li>
+        <li>Corporate Finance (NPV, IRR, WACC)</li>
+        <li>Brazilian Tax Expertise</li>
+        <li>Credit &amp; Credit Risk Portfolio Modeling</li>
+        <li>Agile Methodology &amp; Product Management</li>
+        <li>Python, LLMs &amp; Machine Learning</li>
+        <li>Executive &amp; Board-Level Communication</li>
+        <li>Corporate Negotiation</li>
+        <li>PMO &amp; Transformation Office Design</li>
+        <li>Project Management</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="label">Soft Skills</p>
+      <ul class="skills">
+        <li>Credibility</li>
+        <li>Courage</li>
+        <li>Resilience</li>
+        <li>Caring &amp; Rigorous Leadership</li>
+        <li>Empathy</li>
+      </ul>
+    </div>
   </section>
 
 </div>
-
-<section class="next reveal" id="challenge">
-  <div class="wrap">
-    <p class="label">Put me to the test</p>
-    <h2>Test my abilities</h2>
-    <div class="prose">
-      <p>
-        Do you want to test my abilities? <strong>Email me a problem related to my skills</strong>
-        and I will hand it back to you in one week.
-      </p>
-    </div>
-    <div class="actions">
-      <a class="btn" href="mailto:ron1998@mit.edu?subject=A%20problem%20for%20you%2C%20Ronaldo">Email me a problem</a>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">

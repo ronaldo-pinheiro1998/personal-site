@@ -38,10 +38,10 @@ Analyst (progressed from Intern → Business Analyst → Senior Business Analyst
   regional volatility, regulatory nuance) instead of using a British vendor's
   model that didn't fit the Brazilian context — concluded a proposed partnership
   would not be competitive.
-- Led the McKinsey Juntos conference in Rio (2023), reaching 400 people total:
-  10 corporate sponsors, firm leadership, and university partners. Produced 80
-  hires and 150+ scholarships for under-represented talent; it's now an annual
-  initiative.
+- Led the McKinsey Juntos conference in Rio (2023), distributing 150
+  scholarships for under-represented talent and reaching 400 underserved
+  people total, with 10 corporate sponsors, firm leadership, and university
+  partners; it's now an annual initiative.
 
 **Globo** (Aug 2025 – Jul 2026), Rio de Janeiro — Manager of Corporate Strategy,
 as part of McKinsey's "third-year-out" program (a year at another company before
@@ -50,8 +50,8 @@ the MBA). Globo is the largest media company in Latin America.
   bottom-up adoption without top-down intent tied to the P&L; the board approved
   two new units — an AI-first venture-building cell and a process-redesign cell
   using agents in high-potential functions.
-- Ran the transformation office (PMO) for the R$70M board-approved investment
-  behind that AI implementation plan.
+- Ran the transformation office (PMO) for the USD 14M board-approved
+  investment behind that AI implementation plan.
 - Led feasibility study for a new business-focused content channel.
 - This was his first formal team-management experience.
 
